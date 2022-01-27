@@ -1,0 +1,23 @@
+{
+  "name": "festivaldemusica",
+  "version": "1.0.0",
+  "description": "Proyecto con gulp sass y html",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Revsky/FestivalDeMusica.git"
+  },
+  "keywords": [
+    "sass",
+    "gulp"
+  ],
+  "author": "angel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Revsky/FestivalDeMusica/issues"
+  },
+  "homepage": "https://github.com/Revsky/FestivalDeMusica#readme"
+}
