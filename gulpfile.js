@@ -17,7 +17,7 @@ exports.tarea = tarea;
 ///////////////////////////////////////////////////////////////////////////////////
 
 // Realizamos la importación multiple de paquetes de una dependencia usando la sintaxis de llaves
-const { src,dest } = require('gulp')
+const { src,dest,watch } = require('gulp')
 // Importamos la dependencia que nos permite compilar a SASS
 // Usamos require('gulp--sass') para operar archivos sass desde gulp
 // E indicamos (requiere('sass')) para que use el paquete principal de sass que es el que contiene toda la logica necesaria para hacer la conversión
@@ -39,5 +39,18 @@ function css(callback){
 
     callback()
 }
+function dev(callback) {
+    // La función de watch espera dos parametros 
+        /*
+            - La ruta del archivo SCSS de donde escuchara los cambios
+            - La función que va a ejecutar cada vez que se ejecuten los cambios 
+        */
+    watch('src/scss/app.scss',css);
+
+    callback();
+}
+
+// Exportación de funciones
 
 exports.css = css;
+exports.dev = dev;
