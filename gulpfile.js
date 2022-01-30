@@ -13,3 +13,31 @@ function tarea( callback ){
 
 // Podemos usar el mismo nombre para la asignación y para la tarea que va a ejecutar para no complicar mas el código
 exports.tarea = tarea;
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// Realizamos la importación multiple de paquetes de una dependencia usando la sintaxis de llaves
+const { src,dest } = require('gulp')
+// Importamos la dependencia que nos permite compilar a SASS
+// Usamos require('gulp--sass') para operar archivos sass desde gulp
+// E indicamos (requiere('sass')) para que use el paquete principal de sass que es el que contiene toda la logica necesaria para hacer la conversión
+const sass = require('gulp-sass')(require('sass'));
+
+function css(callback){
+    console.log("Compilano SASS");
+
+    // Identificar el archivo .SCSS a compilar
+
+    // La funcion src recibe la ruta de donde esta nustro archivo app.scss
+    /* 
+        - pipe nos permite pasar el resultado de una función a otra a forma de argumento y ademas de esto ejecuta las funciónes envueltas por ella de manera serial una despues de otra
+    */
+    src('src/scss/app.scss')
+        .pipe( sass() ) // Compilarlo
+        .pipe( dest('build/css') ) // Almacenarlo en el disco duro, por defecto crea el archivo app.scss
+
+
+    callback()
+}
+
+exports.css = css;
