@@ -33,7 +33,9 @@ function css(callback){
         - pipe nos permite pasar el resultado de una función a otra a forma de argumento y ademas de esto ejecuta las funciónes envueltas por ella de manera serial una despues de otra
     */
     src('src/scss/app.scss')
-        .pipe( sass() ) // Compilarlo
+        .pipe( sass({
+            outputStyle:'compressed' // EStilo de salida del archivo compilado
+        }) ) // Compilarlo
         .pipe( dest('build/css') ) // Almacenarlo en el disco duro, por defecto crea el archivo app.scss
 
 

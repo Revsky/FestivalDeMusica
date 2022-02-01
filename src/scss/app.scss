@@ -2,9 +2,9 @@
 // @import 'base/variables';
 
 // Sintaxis nueva -> utiliza un archivo index en cada carpeta y usamos la palabra @use
-@use 'base';
+@use 'base/variables' as v;
 @use 'contenido';
 
 body{
-    background-color: $rojo;
+    background-color: v.$rojo;
 }
