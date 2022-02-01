@@ -1,4 +1,9 @@
-$rojo: rgb(0, 17, 255);
+// Sintaxis anterior de importar otras hojas scss
+// @import 'base/variables';
+
+// Sintaxis nueva -> utiliza un archivo index en cada carpeta y usamos la palabra @use
+@use 'base';
+@use 'contenido';
 
 body{
     background-color: $rojo;
