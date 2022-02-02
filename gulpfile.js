@@ -23,6 +23,8 @@ const { src,dest,watch } = require('gulp')
 // E indicamos (requiere('sass')) para que use el paquete principal de sass que es el que contiene toda la logica necesaria para hacer la conversión
 const sass = require('gulp-sass')(require('sass'));
 
+const plumber = require('gulp-plumber')
+
 function css(callback){
     console.log("Compilano SASS");
 
@@ -33,6 +35,7 @@ function css(callback){
         - pipe nos permite pasar el resultado de una función a otra a forma de argumento y ademas de esto ejecuta las funciónes envueltas por ella de manera serial una despues de otra
     */
     src('src/scss/**/*.scss') // La sintaxis de **/*.scss busca todos los archivos que tengan.scss dentro de la carpeta scss
+        .pipe(plumber()) // Evita que en caso de error detenga el código de watch
         .pipe( sass({
             outputStyle:'compressed' // EStilo de salida del archivo compilado
         }) ) // Compilarlo

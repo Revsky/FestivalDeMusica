@@ -3,8 +3,5 @@
 
 // Sintaxis nueva -> utiliza un archivo index en cada carpeta y usamos la palabra @use
 @use 'base/variables' as v;
-@use 'contenido';
+@use 'base/normalize';
 
-body{
-    background-color: v.$rojo;
-}
