@@ -32,7 +32,7 @@ function css(callback){
     /* 
         - pipe nos permite pasar el resultado de una función a otra a forma de argumento y ademas de esto ejecuta las funciónes envueltas por ella de manera serial una despues de otra
     */
-    src('src/scss/app.scss')
+    src('src/scss/**/*.scss') // La sintaxis de **/*.scss busca todos los archivos que tengan.scss dentro de la carpeta scss
         .pipe( sass({
             outputStyle:'compressed' // EStilo de salida del archivo compilado
         }) ) // Compilarlo
@@ -47,7 +47,7 @@ function dev(callback) {
             - La ruta del archivo SCSS de donde escuchara los cambios
             - La función que va a ejecutar cada vez que se ejecuten los cambios 
         */
-    watch('src/scss/app.scss',css);
+    watch('src/scss/**/*.scss',css);
 
     callback();
 }
