@@ -2,6 +2,7 @@
 // @import 'base/variables';
 
 // Sintaxis nueva -> utiliza un archivo index en cada carpeta y usamos la palabra @use
-@use 'base/variables' as v;
-@use 'base/normalize';
 
+// Para app solo indicamos la carpetas contenedoras de otros archivos scss
+@use 'base';
+@use 'layout';
