@@ -1,0 +1,11 @@
+/* 
+    - Los mixins son fragmentos de código que podemos reutilizar en scss
+*/
+
+/////////////// Mixin de Prueba ////////////////
+
+@mixin header {
+    font-size: 2rem;
+    font-family: sans-serif;
+    color: blue;
+}
