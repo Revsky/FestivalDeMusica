@@ -10,6 +10,11 @@
 }
 
 .navegacion-principal{
+    /* @include m.telefono{
+        // Indicando @content; en el mediaquery podemos agregar código aqui
+        text-transform: uppercase;
+        font-weight: bold;
+    } */
     a{
         color:v.$blanco ;
         font-size: 2.4rem;
@@ -20,6 +25,9 @@
     }
 }
 //////////// Prueba de mixins ///////////
-.prueba_mixins{
-    @include m.header;
-}
+/* .prueba_mixins{
+    // Para usar mixin usamos la palabra clave @include
+    @include m.header(v.$amarillo,true);
+
+    
+} */

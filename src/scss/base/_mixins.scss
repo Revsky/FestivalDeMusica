@@ -4,8 +4,40 @@
 
 /////////////// Mixin de Prueba ////////////////
 
-@mixin header {
+/* @mixin header($color,$border-radius: false) {
     font-size: 2rem;
     font-family: sans-serif;
-    color: blue;
+    color: $color;
+
+    @if $border-radius {
+        border-radius: 1rem;
+    }
+} */
+
+//////////////////////////////////////////////////////////////
+
+@use 'variables' as v;
+
+@mixin phone {
+    @media(min-width: v.$telefono){
+        @content; // Permite agregar código desde donde invoquemos al mediaquery
+    }
+}
+
+@mixin tablet {
+    @media(min-width: v.$tablet){
+        @content; // Permite agregar código desde donde invoquemos al mediaquery
+    }
+}
+
+@mixin desktop {
+    @media(min-width: v.$dektop){
+        @content; // Permite agregar código desde donde invoquemos al mediaquery
+    }
+}
+
+@mixin desktopXL {
+    @media(min-width: v.$desktopXL){
+        @content; // Permite agregar código desde donde invoquemos al mediaquery
+    }
 }
