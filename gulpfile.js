@@ -29,9 +29,13 @@ const sass = require('gulp-sass')(require('sass'));
 
 const plumber = require('gulp-plumber')
 
+
+
 // Paquetes para imagenes
 
-const webp = require('gulp-webp')
+const imagemin = require('gulp-imagemin');
+const webp = require('gulp-webp');
+const cache = require('gulp-cache');
 
 function css(callback){
     console.log("Compilano SASS");
@@ -51,6 +55,19 @@ function css(callback){
 
 
     callback()
+}
+/* Genera una versión optimizada de imagenes jpg */
+function imagenes( callback ){
+
+    const opciones = {
+        optimizationLevel: 3
+    }
+
+    src('src/img/**/*.{png,jpg}') 
+        .pipe( cache( imagemin ( opciones ) ) )
+        .pipe( dest('build/img') )
+
+    callback();
 }
 
 function versionWebp( callback ){
@@ -82,5 +99,6 @@ function dev(callback) {
 
 exports.css = css;
 exports.versionWebp = versionWebp;
+exports.imagenes = imagenes;
 /* La funcion parallel permite ejecutar de manera paralela diversas funciones */
-exports.dev = parallel(css,versionWebp,dev);
+exports.dev = parallel(imagenes,versionWebp,dev);
