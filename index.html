@@ -23,9 +23,17 @@
             </div>
         </div>
     </header>
-<!-- 
-    <p class="prueba_mixins">
-        Prueba de Mixins
-    </p> -->
+
+    <!-- Añadiendo un video -->
+    <!-- Para que se reprodusca en automatico nuestro video denemos agregar la propiedad de autoplay y muted -->
+
+    <!-- El atributo controls nos permite agregar controles al video -->
+    <video autoplay muted loop>
+        <source src="video/concierto.mp4" type="video/mp4"><!-- Debe colocarse primero el .mp4 --> 
+        <source src="video/concierto.ogg" type="video/ogg">
+        <source src="video/concierto.webm" type="video/webm">
+        
+    </video>
+
 </body>
 </html>
