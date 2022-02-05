@@ -14,16 +14,24 @@ function tarea( callback ){
 // Podemos usar el mismo nombre para la asignación y para la tarea que va a ejecutar para no complicar mas el código
 exports.tarea = tarea;
 
+
+
 ///////////////////////////////////////////////////////////////////////////////////
 
+
+
 // Realizamos la importación multiple de paquetes de una dependencia usando la sintaxis de llaves
-const { src,dest,watch } = require('gulp')
+const { src,dest,watch,parallel } = require('gulp')
 // Importamos la dependencia que nos permite compilar a SASS
 // Usamos require('gulp--sass') para operar archivos sass desde gulp
 // E indicamos (requiere('sass')) para que use el paquete principal de sass que es el que contiene toda la logica necesaria para hacer la conversión
 const sass = require('gulp-sass')(require('sass'));
 
 const plumber = require('gulp-plumber')
+
+// Paquetes para imagenes
+
+const webp = require('gulp-webp')
 
 function css(callback){
     console.log("Compilano SASS");
@@ -44,6 +52,21 @@ function css(callback){
 
     callback()
 }
+
+function versionWebp( callback ){
+
+    /* Generamos las configuraciónes para la función webp */
+    const opciones = {
+        quality:50
+    };
+    /* La sintaxis de .{} <- Nos permite indicarle a gulp las extenciones de imagenes que debe buscar */
+    src('src/img/**/*.{png,jpg}') 
+        .pipe(webp( opciones )) // Realizamos la conversion
+        .pipe( dest( 'build/img' ) ) // Guardamos las versiones convertidas
+
+    callback();
+}
+
 function dev(callback) {
     // La función de watch espera dos parametros 
         /*
@@ -58,4 +81,6 @@ function dev(callback) {
 // Exportación de funciones
 
 exports.css = css;
-exports.dev = dev;
+exports.versionWebp = versionWebp;
+/* La funcion parallel permite ejecutar de manera paralela diversas funciones */
+exports.dev = parallel(css,versionWebp,dev);
