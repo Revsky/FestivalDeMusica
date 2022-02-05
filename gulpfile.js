@@ -37,6 +37,9 @@ const imagemin = require('gulp-imagemin');
 const webp = require('gulp-webp');
 const cache = require('gulp-cache');
 
+// Paquetes para imagenes avif
+const avif = require('gulp-avif');
+
 function css(callback){
     console.log("Compilano SASS");
 
@@ -84,6 +87,18 @@ function versionWebp( callback ){
     callback();
 }
 
+function versionAvif( callback ){
+
+    const opciones = {
+        quality:50
+    };
+    src('src/img/**/*.{png,jpg}') 
+        .pipe(avif( opciones ))
+        .pipe( dest( 'build/img' ) )
+
+    callback();
+}
+
 function dev(callback) {
     // La función de watch espera dos parametros 
         /*
@@ -99,6 +114,7 @@ function dev(callback) {
 
 exports.css = css;
 exports.versionWebp = versionWebp;
+exports.versionAvif = versionAvif
 exports.imagenes = imagenes;
 /* La funcion parallel permite ejecutar de manera paralela diversas funciones */
-exports.dev = parallel(imagenes,versionWebp,dev);
+exports.dev = parallel(imagenes,versionWebp,versionAvif,dev);
