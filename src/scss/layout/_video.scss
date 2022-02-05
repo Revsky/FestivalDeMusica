@@ -3,7 +3,9 @@
 
 .video{
     position: relative;
-
+    max-height: 70rem;
+    min-height: 50rem;
+    overflow: hidden; // Recorta el video para que no tome toda la pantalla
     .overlay{
         position: absolute;
         /* Para generar el gradiente usamos la herrammienta https://cssgradient.io/ */
@@ -11,12 +13,37 @@
         background: linear-gradient(270deg, rgba(165,3,255,0.5) 0%, rgba(255,0,110,0.3) 100%);
         width: 100%;
         height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
     /* Selecciona la etiqueta del video */
     video{
-        width: 100%;
+        width: auto;
         /* Hace que el video tome todo el espacio hacia los lados */
         display: block;
+        @include m.tablet {
+            width: 100%;
+        }
+    }
+}
+
+.contenido-video{
+    z-index:10 ; // Nos permite elejir que elementos estas encima de otros mientras mas alto el número estara sobre los demas elemenyos
+    h2{
+        color:white;
+       
+    }
+
+    p{
+        
+        background-color: v.$rosa;
+        display: inline-block;
+        padding: 1rem 2rem;
+        color: v.$blanco;
+        font-weight: 700;
+        margin: 0;
     }
 }
