@@ -118,3 +118,5 @@ exports.versionAvif = versionAvif
 exports.imagenes = imagenes;
 /* La funcion parallel permite ejecutar de manera paralela diversas funciones */
 exports.dev = parallel(imagenes,versionWebp,versionAvif,dev);
+
+exports.watch = dev;
