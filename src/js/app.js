@@ -35,10 +35,33 @@ function mostrarImagen( index ){
         <img loading="lazy" alt="imagen ${index}" src="build/img/grande/${index}.jpg">
     `;
 
+    // Crea el overñat con la imagen
     const overlay = document.createElement('DIV')
     overlay.appendChild(imagen)
     overlay.classList.add('overlay');
+    overlay.onclick = function(){
+        const body = document.querySelector('body');
+        body.classList.remove('fijar-body')
 
+        overlay.remove();
+    }
+
+    // Boton para cerrar la ventana modal
+    const cerrarModal = document.createElement('P')
+    cerrarModal.textContent = 'X';
+    cerrarModal.classList.add('btn-cerrar')
+    cerrarModal.onclick = function(){
+        const body = document.querySelector('body');
+        body.classList.remove('fijar-body')
+
+        overlay.remove();
+    }
+
+    overlay.appendChild(cerrarModal);
+
+
+    // Añade la imagen al HTML
     const body = document.querySelector('body');
     body.appendChild(overlay)
+    body.classList.add('fijar-body')
 }

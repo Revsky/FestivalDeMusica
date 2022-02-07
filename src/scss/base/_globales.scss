@@ -12,6 +12,10 @@ html{
 body{
     font-family: v.$fuente-principal;
     font-size: 1.6rem;
+    // Impide dar scroll cuando esta clase este presente
+    &.fijar-body{
+        overflow: hidden;
+    }
 }
 
 p{
