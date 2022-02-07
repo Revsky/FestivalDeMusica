@@ -99,6 +99,14 @@ function versionAvif( callback ){
     callback();
 }
 
+function javascript( callback ){
+
+    src('src/js/**/*.js')
+        .pipe(dest('build/js'))
+
+    callback()
+}
+
 function dev(callback) {
     // La función de watch espera dos parametros 
         /*
@@ -106,17 +114,20 @@ function dev(callback) {
             - La función que va a ejecutar cada vez que se ejecuten los cambios 
         */
     watch('src/scss/**/*.scss',css);
+    // Escuchamos los camnios en los archivos js
+    watch('src/js/**/*.js',javascript);
 
     callback();
 }
 
 // Exportación de funciones
 
-exports.css = css;
+exports.css1 = css;
+exports.javascript = javascript;
 exports.versionWebp = versionWebp;
 exports.versionAvif = versionAvif
 exports.imagenes = imagenes;
 /* La funcion parallel permite ejecutar de manera paralela diversas funciones */
-exports.dev = parallel(imagenes,versionWebp,versionAvif,dev);
+exports.dev = parallel(imagenes,versionWebp,versionAvif,javascript,dev);
 
 exports.watch = dev;
