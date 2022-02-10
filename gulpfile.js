@@ -31,7 +31,12 @@ const plumber = require('gulp-plumber')
 const autoprefixer = require('autoprefixer') // Permite que funcioenen las ultimas caracteristicas de CSS en cualquier navegador
 const cssnano = require('cssnano') // Reduce y optimiza nuestro código CSS
 const postcss = require('gulp-postcss')
+/* Sourcemaps nos ayudara a ubicar código CSS en nuestros archivos .scss, recordando que el navegador usa el código minificado y se nos seria imposible encontrar el cósigo en la minifiación  */
+const sourcemaps = require('gulp-sourcemaps')
 
+// Pauqtes JS
+
+const terser = require('gulp-terser-js')
 
 // Paquetes para imagenes
 
@@ -52,11 +57,13 @@ function css(callback){
         - pipe nos permite pasar el resultado de una función a otra a forma de argumento y ademas de esto ejecuta las funciónes envueltas por ella de manera serial una despues de otra
     */
     src('src/scss/**/*.scss') // La sintaxis de **/*.scss busca todos los archivos que tengan.scss dentro de la carpeta scss
+        .pipe( sourcemaps.init() ) // Inicia el cache de sourcemaps
         .pipe(plumber()) // Evita que en caso de error detenga el código de watch
         .pipe( sass({
             outputStyle:'compressed' // EStilo de salida del archivo compilado
         }) ) // Compilarlo
         .pipe( postcss([ autoprefixer(), cssnano() ]) )
+        .pipe( sourcemaps.write('.') ) // Antes de guardar nuestro código indicamos donde debe guardarlo, para que sea en la misma ubicación que el código minificado usamos . 
         .pipe( dest('build/css') ) // Almacenarlo en el disco duro, por defecto crea el archivo app.scss
 
 
@@ -105,7 +112,11 @@ function versionAvif( callback ){
 function javascript( callback ){
 
     src('src/js/**/*.js')
+        .pipe(sourcemaps.init())
+        .pipe( terser() )
+        .pipe( sourcemaps.write('.') )
         .pipe(dest('build/js'))
+
 
     callback()
 }
