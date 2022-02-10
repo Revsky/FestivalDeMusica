@@ -4,6 +4,26 @@ document.addEventListener('DOMContentLoaded', function(){
 
 function iniciarApp(){
     crearGaleria();
+    scrollNav()
+}
+
+function scrollNav(){
+
+    const enlances = document.querySelectorAll('.navegacion-principal a')
+    enlances.forEach(enlace => {
+        enlace.addEventListener( 'click', function( event ){
+
+            event.preventDefault(); /* Impide que nos lleve de golpe al link ya que es la acción por defecto de los enlances */
+
+            const seccionScroll = event.target.attributes.href.value;
+            const seccion = document.querySelector(seccionScroll)
+
+            /* Agrega la animación smoth al dar click en los enlancess */
+            seccion.scrollIntoView( { behavior: 'smooth' } );
+
+        })
+    })
+
 }
 
 function crearGaleria(){
