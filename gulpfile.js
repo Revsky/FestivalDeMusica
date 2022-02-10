@@ -26,9 +26,11 @@ const { src,dest,watch,parallel } = require('gulp')
 // Usamos require('gulp--sass') para operar archivos sass desde gulp
 // E indicamos (requiere('sass')) para que use el paquete principal de sass que es el que contiene toda la logica necesaria para hacer la conversión
 const sass = require('gulp-sass')(require('sass'));
-
 const plumber = require('gulp-plumber')
 
+const autoprefixer = require('autoprefixer') // Permite que funcioenen las ultimas caracteristicas de CSS en cualquier navegador
+const cssnano = require('cssnano') // Reduce y optimiza nuestro código CSS
+const postcss = require('gulp-postcss')
 
 
 // Paquetes para imagenes
@@ -54,6 +56,7 @@ function css(callback){
         .pipe( sass({
             outputStyle:'compressed' // EStilo de salida del archivo compilado
         }) ) // Compilarlo
+        .pipe( postcss([ autoprefixer(), cssnano() ]) )
         .pipe( dest('build/css') ) // Almacenarlo en el disco duro, por defecto crea el archivo app.scss
 
 
